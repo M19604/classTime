@@ -126,8 +126,8 @@
             }
         }
     }
+    f="ab";
     function switchLunch(a) {
-        f="ab";
         e=f.indexOf(a);
         localStorage.setItem("lunch", a);
         while (document.getElementsByClassName("active")[0]) {
@@ -137,9 +137,11 @@
     }
     if (localStorage.getItem("lunch") === null) {
         localStorage.setItem("lunch", "a");
+        e=0;
     } else {
         document.getElementById("aLunch").classList.remove("active");
         document.getElementById(`${localStorage.getItem("lunch")}Lunch`).classList.add("active");
+        e=f.indexOf(localStorage.getItem("lunch"));
     }
 </script>
 <!-- MADE BY LUKE SKUTT, 2024 -->
