@@ -127,7 +127,8 @@
         }
     }
     function switchLunch(a) {
-        e=a;
+        f="ab";
+        e=f.indexOf(a);
         localStorage.setItem("lunch", a);
         while (document.getElementsByClassName("active")[0]) {
             document.getElementsByClassName("active")[0].classList.remove("active");
