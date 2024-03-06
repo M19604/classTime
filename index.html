@@ -60,7 +60,7 @@
 </div>
 <div id="text"></div>
 <script>
-    var s="delaystart"; // normal, delaystart, assembly, 1/2day.
+    var s="seminar"; // normal, delaystart, assembly, 1/2day, seminar.
     var b,c;
     var e=1;
     var d=new Date();
@@ -101,8 +101,8 @@
             } else {
                 return "School is over.";
             }
-        } else if (s==="normal") {
-            if (d.getDay()===2||d.getDay()===4) {
+        } else if (s==="normal"||s==="seminar") {
+            if (s==="seminar"||d.getDay()===2||d.getDay()===4) {
                 if(b>=735&&b<=831) {
                     return `1st Hour<br>${((8*60)+31-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
                 } else if (b>=832&&b<=926) {
@@ -153,16 +153,16 @@
     }
     function switchLunch(a) {
         e="ab".indexOf(a);
-        localStorage.setItem("lunch", a);
-        while (document.getElementsByClassName("active")[0]) {
+        localStorage.setItem("lunch",a);
+        while(document.getElementsByClassName("active")[0]){
             document.getElementsByClassName("active")[0].classList.remove("active");
         }
         document.getElementById(`${a}Lunch`).classList.add("active");
     }
-    if (localStorage.getItem("lunch") === null) {
-        localStorage.setItem("lunch", "a");
+    if(localStorage.getItem("lunch")===null){
+        localStorage.setItem("lunch","a");
         e=0;
-    } else {
+    }else{
         document.getElementById("aLunch").classList.remove("active");
         document.getElementById(`${localStorage.getItem("lunch")}Lunch`).classList.add("active");
         e="ab".indexOf(localStorage.getItem("lunch"));
