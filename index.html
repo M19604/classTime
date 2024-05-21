@@ -7,11 +7,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 7vw;
-        color: #f1f1f1;
         text-align: center;
         font-family: sans-serif;
         user-select: none;
+        color: #f1f1f1;
     }
 
     .lunchSelector {
@@ -60,6 +59,19 @@
         bottom: 1%;
         right: 1%;
     }
+
+    #text {
+        font-size: 7vw;
+    }
+
+    #remaining {
+        width: 100%;
+        height: 10%;
+        position: absolute;
+        bottom: 20%;
+        font-size: 3vw;
+        color: #c1c1c1;
+    }
 </style>
 <div class="lunchSelector">
     <div id="selector"></div>
@@ -68,13 +80,16 @@
 </div>
 <div id="text"></div>
 <div id="lastUpdated"></div>
+<div id="remaining"></div>
 <script>
     var s="normal"; // normal, delaystart, assembly, 1/2day, seminar.
     var b,c;
     var e=1;
     var d=new Date();
+    var z=new Date("6/14/2024 10:30").getTime();
     setInterval(function(){
         d=new Date();
+        document.getElementById("remaining").textContent=`${((z-d)/(1000*60*60*24)).toFixed(2)} days remaining.`;
         if (d.getMinutes()<10) {
             b=parseInt(`${d.getHours()}0${d.getMinutes()}`);
         } else {
