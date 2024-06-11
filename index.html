@@ -103,29 +103,11 @@
         }
     })
     function findClass(){
-                if(b>=735&&b<=810) {
-                    return `1st Hour<br>${((8*60)+10-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (b>=815&&b<=845) {
-                    return `2nd Hour<br>${((8*60)+45-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (b>=845&&b<=920) {
-                    return `3rd Hour<br>${((9*60)+20-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (b>=920&&b<=955) {
-                    return `4th Hour<br>${((9*60)+55-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (b>=955&&b<=1030) {
-                    return `5th Hour<br>${((10*60)+30-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (!e&&b>=1025&&b<=1100) {
-                    return `A Lunch<br>${((11*60)+0-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (!e&&b>=1100&&b<=1135) {
-                    return `6th Hour A<br>${((11*60)+35-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (e&&b>=1030&&b<=1105) {
-                    return `6th Hour B<br>${((11*60)+5-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (e&&b>=1100&&b<=1135) {
-                    return `B Lunch<br>${((11*60)+35-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (b>=1135&&b<=1300) {
-                    return `5th Hour Exam<br>${((13*60)+0-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (b>=1305&&b<=1430) {
-                    return `6th Hour Exam<br>${((14*60)+30-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else {
+                if(b>=735&&b<=900) {
+                    return `4th Hour Exam<br>${((9*60)+0-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+                } else if (b>=900&&b<=1030) {
+                    return `2nd Hour<br>${((10*60)+30-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+                }else {
                     return "School is over.";
                 }
             }
