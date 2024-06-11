@@ -104,9 +104,9 @@
     })
     function findClass(){
                 if(b>=735&&b<=900) {
-                    return `4th Hour Exam<br>${((9*60)+0-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+                    return `3rd Hour Exam<br>${((9*60)+0-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
                 } else if (b>=900&&b<=1030) {
-                    return `2nd Hour<br>${((10*60)+30-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+                    return `4th Hour Exam<br>${((10*60)+30-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
                 }else {
                     return "School is over.";
                 }
