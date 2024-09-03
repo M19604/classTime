@@ -117,6 +117,7 @@
             document.getElementsByClassName("active")[0].classList.remove("active");
         }
         document.getElementById(`${a}Lunch`).classList.add("active");
+        e="ab".indexOf(a);
     }
     if(localStorage.getItem("lunch")){
         document.getElementById("aLunch").classList.remove("active");
