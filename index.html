@@ -12,7 +12,6 @@
         user-select: none;
         color: #f1f1f1;
     }
-
     .lunchSelector {
         height: 10%;
         width: 35%;
@@ -25,7 +24,6 @@
         align-items: center;
         font-size: 2vw;
     }
-
     .lunchSelector #aLunch,
     .lunchSelector #bLunch {
         height: 90%;
@@ -38,20 +36,16 @@
         filter: brightness(75%);
         transition: .5s;
     }
-
     .lunchSelector #bLunch {
         right: .25vw;
     }
-
     .lunchSelector #aLunch {
         left: .25vw;
     }
-
     .lunchSelector .active {
         background-color: #191919;
         border-radius: 50vw;
     }
-
     #lastUpdated {
         color: #666;
         font-size: 1vw;
@@ -59,11 +53,9 @@
         bottom: 1%;
         right: 1%;
     }
-
     #text {
         font-size: 7vw;
     }
-
     #remaining {
         width: 100%;
         height: 10%;
@@ -74,7 +66,6 @@
     }
 </style>
 <div class="lunchSelector">
-    <div id="selector"></div>
     <div id="aLunch" class="active" onclick="switchLunch(this.id.split('Lunch')[0])">A Lunch</div>
     <div id="bLunch" onclick="switchLunch(this.id.split('Lunch')[0])">B Lunch</div>
 </div>
@@ -83,49 +74,57 @@
 <div id="remaining"></div>
 <script>
     var s="normal"; // normal, delaystart, assembly, 1/2day, seminar.
-    var b,c;
+    var b,c,d;
     var e=1;
-    var d=new Date();
-    var z=new Date("6/13/2024 10:30").getTime();
+    var z=new Date(`6/13/2025 10:30`).getTime();
     setInterval(function(){
         d=new Date();
-        document.getElementById("remaining").textContent=`${Math.round((z-d)/(1000*60*60*24))} days remaining.`;
-        if (d.getMinutes()<10) {
-            b=parseInt(`${d.getHours()}0${d.getMinutes()}`);
-        } else {
-            b=parseInt(`${d.getHours()}${d.getMinutes()}`);
-        }
+        document.getElementById("remaining").textContent=`${Math.floor((z-d)/(1000*60*60*24))} days remaining.`;
+        b=d.getMinutes()<10?parseInt(`${d.getHours()}0${d.getMinutes()}`):parseInt(`${d.getHours()}${d.getMinutes()}`);
         c=findClass();
-        if(parseInt(c.split(":")[1])<10) {
-            document.getElementById("text").innerHTML=`${c.split(":")[0]}:0${c.split(":")[1]}`;
-        }else{
-            document.getElementById("text").innerHTML=c;
-        }
+        document.getElementById("text").innerHTML=parseInt(c.split(":")[1])<10?`${c.split(":")[0]}:0${c.split(":")[1]}`:c;
     })
     function findClass(){
-                if(b>=735&&b<=900) {
-                    return `1st Hour Exam<br>${((9*60)+0-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                } else if (b>=900&&b<=1030) {
-                    return `2nd Hour Exam<br>${((10*60)+30-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
-                }else {
-                    return "School is over.";
-                }
+        if (s=="normal") {
+            if(b>=740&&b<=835) {
+                return `1st Hour<br>${((8*60)+35-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=836&&b<=935) {
+                return `2nd Hour<br>${((9*60)+35-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=936&&b<=1034) {
+                return `3rd Hour<br>${((10*60)+34-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=1035&&b<=1112) {
+                return `Advisory<br>${((11*60)+12-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (!e&&b>=1113&&b<=1142) {
+                return `A Lunch<br>${((11*60)+42-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (!e&&b>=1143&&b<=1242) {
+                return `4th Hour A<br>${((12*60)+42-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (e&&b>=1113&&b<=1212) {
+                return `4th Hour B<br>${((12*60)+12-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (e&&b>=1213&&b<=1242) {
+                return `B Lunch<br>${((12*60)+42-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=1243&&b<=1341) {
+                return `5th Hour<br>${((13*60)+41-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=1342&&b<=1440) {
+                return `6th Hour<br>${((14*60)+40-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else {
+                return "School is over.";
             }
+        }
+    }
     function switchLunch(a) {
-        e="ab".indexOf(a);
         localStorage.setItem("lunch",a);
         while(document.getElementsByClassName("active")[0]){
             document.getElementsByClassName("active")[0].classList.remove("active");
         }
         document.getElementById(`${a}Lunch`).classList.add("active");
     }
-    if(localStorage.getItem("lunch")===null){
-        localStorage.setItem("lunch","a");
-        e=0;
-    }else{
+    if(localStorage.getItem("lunch")){
         document.getElementById("aLunch").classList.remove("active");
         document.getElementById(`${localStorage.getItem("lunch")}Lunch`).classList.add("active");
         e="ab".indexOf(localStorage.getItem("lunch"));
+    }else{
+        localStorage.setItem("lunch","a");
+        e=0;
     }
     fetch("https://api.github.com/repos/M19604/classTime").then(f=>{
         return f.json();
