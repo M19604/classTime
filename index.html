@@ -73,7 +73,7 @@
 <div id="lastUpdated"></div>
 <div id="remaining"></div>
 <script>
-    var s="normal"; // normal, delaystart, assembly, 1/2day, seminar.
+    var s="earlyrelease"; // normal, delaystart, assembly, 1/2day, seminar, earlyrelease.
     var b,c,d;
     var e=1;
     var z=new Date(`6/13/2025 10:30`).getTime();
@@ -106,6 +106,28 @@
                 return `5th Hour<br>${((13*60)+41-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
             } else if (b>=1342&&b<=1440) {
                 return `6th Hour<br>${((14*60)+40-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else {
+                return "School is over.";
+            }
+        } else if (s=="earlyrelease") {
+            if(b>=740&&b<=821) {
+                return `1st Hour<br>${((8*60)+21-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=832&&b<=907) {
+                return `2nd Hour<br>${((9*60)+7-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=908&&b<=953) {
+                return `3rd Hour<br>${((9*60)+53-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (!e&&b>=954&&b<=1023) {
+                return `A Lunch<br>${((10*60)+23-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (!e&&b>=954&&b<=1023) {
+                return `4th Hour A<br>${((10*60)+23-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (e&&b>=1024&&b<=1039) {
+                return `4th Hour B<br>${((10*60)+39-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (e&&b>=1040&&b<=1109) {
+                return `B Lunch<br>${((11*60)+9-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=1110&&b<=1155) {
+                return `5th Hour<br>${((11*60)+55-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=1156&&b<=1240) {
+                return `6th Hour<br>${((12*60)+40-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
             } else {
                 return "School is over.";
             }
