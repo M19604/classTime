@@ -1,0 +1,158 @@
+<!-- WRITTEN BY LUKE SKUTT, 2024 -->
+<title>Class Times</title>
+<style>
+    body {
+        margin: 0;
+        background-color: #161616;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: sans-serif;
+        user-select: none;
+        color: #f1f1f1;
+    }
+    .lunchSelector {
+        height: 10%;
+        width: 35%;
+        border-radius: 50vw;
+        background-color: #222;
+        position: absolute;
+        top: 3%;
+        padding: .5vw;
+        display: flex;
+        align-items: center;
+        font-size: 2vw;
+    }
+    .lunchSelector #aLunch,
+    .lunchSelector #bLunch {
+        height: 90%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        cursor: pointer;
+        filter: brightness(75%);
+        transition: .5s;
+    }
+    .lunchSelector #bLunch {
+        right: .25vw;
+    }
+    .lunchSelector #aLunch {
+        left: .25vw;
+    }
+    .lunchSelector .active {
+        background-color: #191919;
+        border-radius: 50vw;
+    }
+    #lastUpdated {
+        color: #666;
+        font-size: 1vw;
+        position: absolute;
+        bottom: 1%;
+        right: 1%;
+    }
+    #text {
+        font-size: 7vw;
+    }
+    #remaining {
+        width: 100%;
+        height: 10%;
+        position: absolute;
+        bottom: 20%;
+        font-size: 3vw;
+        color: #c1c1c1;
+    }
+</style>
+<div class="lunchSelector">
+    <div id="aLunch" class="active" onclick="switchLunch(this.id.split('Lunch')[0])">A Lunch</div>
+    <div id="bLunch" onclick="switchLunch(this.id.split('Lunch')[0])">B Lunch</div>
+</div>
+<div id="text"></div>
+<div id="lastUpdated"></div>
+<div id="remaining"></div>
+<script>
+    var s="normal"; // normal, delaystart, assembly, 1/2day, seminar, earlyrelease.
+    var b,c,d;
+    var e=1;
+    var z=new Date(`6/13/2025 10:30`).getTime();
+    setInterval(function(){
+        d=new Date();
+        document.getElementById("remaining").textContent=`${Math.floor((z-d)/(1000*60*60*24))} days remaining.`;
+        b=d.getMinutes()<10?parseInt(`${d.getHours()}0${d.getMinutes()}`):parseInt(`${d.getHours()}${d.getMinutes()}`);
+        c=findClass();
+        document.getElementById("text").innerHTML=parseInt(c.split(":")[1])<10?`${c.split(":")[0]}:0${c.split(":")[1]}`:c;
+    })
+    function findClass(){
+        if (s=="normal") {
+            if(b>=740&&b<=835) {
+                return `1st Hour<br>${((8*60)+35-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=836&&b<=935) {
+                return `2nd Hour<br>${((9*60)+35-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=936&&b<=1034) {
+                return `3rd Hour<br>${((10*60)+34-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=1035&&b<=1112) {
+                return `Advisory<br>${((11*60)+12-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (!e&&b>=1113&&b<=1142) {
+                return `A Lunch<br>${((11*60)+42-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (!e&&b>=1143&&b<=1242) {
+                return `4th Hour A<br>${((12*60)+42-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (e&&b>=1113&&b<=1212) {
+                return `4th Hour B<br>${((12*60)+12-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (e&&b>=1213&&b<=1242) {
+                return `B Lunch<br>${((12*60)+42-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=1243&&b<=1341) {
+                return `5th Hour<br>${((13*60)+41-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=1342&&b<=1440) {
+                return `6th Hour<br>${((14*60)+40-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else {
+                return "School is over.";
+            }
+        } else if (s=="earlyrelease") {
+            if(b>=740&&b<=821) {
+                return `1st Hour<br>${((8*60)+21-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=822&&b<=907) {
+                return `2nd Hour<br>${((9*60)+7-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=908&&b<=953) {
+                return `3rd Hour<br>${((9*60)+53-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (!e&&b>=954&&b<=1023) {
+                return `A Lunch<br>${((10*60)+23-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (!e&&b>=954&&b<=1023) {
+                return `4th Hour A<br>${((10*60)+23-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (e&&b>=1024&&b<=1039) {
+                return `4th Hour B<br>${((10*60)+39-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (e&&b>=1040&&b<=1109) {
+                return `B Lunch<br>${((11*60)+9-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=1110&&b<=1155) {
+                return `5th Hour<br>${((11*60)+55-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else if (b>=1156&&b<=1240) {
+                return `6th Hour<br>${((12*60)+40-1)-((d.getHours()*60)+d.getMinutes())}:${60-d.getSeconds()} remaining.`;
+            } else {
+                return "School is over.";
+            }
+        }
+    }
+    function switchLunch(a) {
+        localStorage.setItem("lunch",a);
+        while(document.getElementsByClassName("active")[0]){
+            document.getElementsByClassName("active")[0].classList.remove("active");
+        }
+        document.getElementById(`${a}Lunch`).classList.add("active");
+        e="ab".indexOf(a);
+    }
+    if(localStorage.getItem("lunch")){
+        document.getElementById("aLunch").classList.remove("active");
+        document.getElementById(`${localStorage.getItem("lunch")}Lunch`).classList.add("active");
+        e="ab".indexOf(localStorage.getItem("lunch"));
+    }else{
+        localStorage.setItem("lunch","a");
+        e=0;
+    }
+    fetch("https://api.github.com/repos/M19604/classTime").then(f=>{
+        return f.json();
+    }).then(g=>{
+        document.getElementById("lastUpdated").textContent=new Date(g["pushed_at"]);
+    })
+</script>
+<!-- WRITTEN BY LUKE SKUTT, 2024 -->
