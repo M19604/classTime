@@ -140,7 +140,7 @@
             document.getElementById("lunchA").classList.remove("active");
             document.getElementById(`lunch${localStorage.getItem("lunch")}`).classList.add("active");
             if (localStorage.getItem("lunch") == "B") {
-                document.getElementById("slider").style.left = value?"calc(50% - .5vw)":".5vw";
+                document.getElementById("slider").style.left = "calc(50% - .5vw)";
             }
         }
     }
