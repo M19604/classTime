@@ -104,25 +104,25 @@
         var d = new Date();
         var t = parseInt(`${d.getHours()}${d.getMinutes()}`);
         var s = 60-d.getSeconds()-1;
-        if (t>=740&&t<=840) {
+        if (t>=740&&t<=835) {
             time.textContent = `${840-t}:${s<10?`0${s}`:s}`;
             hour.textContent = "1st Hour";
-        } else if (t>=845&&t<=935) {
+        } else if (t>=840&&t<=935) {
             time.textContent = `${935-t}:${s<10?`0${s}`:s}`;
             hour.textContent = "2nd Hour";
-        } else if (t>=940&&t<=1034) {
+        } else if (t>=935&&t<=1034) {
             time.textContent = `${1034-t}:${s<10?`0${s}`:s}`;
             hour.textContent = "3rd Hour";
-        } else if (t>=1039&&t<=1112) {
+        } else if (t>=1034&&t<=1112) {
             time.textContent = `${1112-t}:${s<10?`0${s}`:s}`;
             hour.textContent = "Advisory";
-        } else if (t>=1112&&t<=1212) {
+        } else if (t>=1108&&t<=1212) {
             time.textContent = `${1212-t}:${s<10?`0${s}`:s}`;
             hour.textContent = "4th Hour";
-        } else if (t>=1247&&t<=1341) {
+        } else if (t>=1243&&t<=1341) {
             time.textContent = `${1341-t}:${s<10?`0${s}`:s}`;
             hour.textContent = "5th Hour";
-        } else if (t>=1346&&t<1440) {
+        } else if (t>=1341&&t<1440) {
             time.textContent = `${1440-t}:${s<10?`0${s}`:s}`;
             hour.textContent = "6th Hour";
         } else if (t>=740&&t<1440) {
